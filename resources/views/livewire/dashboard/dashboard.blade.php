@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+                <div class="p-6 text-gray-900 space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <x-input
@@ -24,6 +24,23 @@
                             />
                         </div>
                     </div>
+                    @if($connected)
+                        <div class="rounded-md bg-green-50 p-4">
+                            <div class="flex">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-green-800">Verbunden mit {{ config('bitcoin.lnbits.url') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="rounded-md bg-red-50 p-4">
+                            <div class="flex">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-red-800">Keine Verbindung zu {{ config('bitcoin.lnbits.url') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="bg-white shadow-sm sm:rounded-lg">
