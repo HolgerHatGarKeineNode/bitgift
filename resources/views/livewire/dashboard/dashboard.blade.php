@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Geschenke') }}
         </h2>
     </x-slot>
 
@@ -28,7 +28,8 @@
                         <div class="rounded-md bg-green-50 p-4">
                             <div class="flex">
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-green-800">Verbunden mit {{ config('bitcoin.lnbits.url') }}</p>
+                                    <p class="text-sm font-medium text-green-800">Verbunden
+                                        mit {{ config('bitcoin.lnbits.url') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +37,8 @@
                         <div class="rounded-md bg-red-50 p-4">
                             <div class="flex">
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-red-800">Keine Verbindung zu {{ config('bitcoin.lnbits.url') }}</p>
+                                    <p class="text-sm font-medium text-red-800">Keine Verbindung
+                                        zu {{ config('bitcoin.lnbits.url') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -51,15 +53,8 @@
                                 {{ __('Bitcoin Geschenke') }}
                             </h2>
                         </div>
-                        <div>
-                            <x-button
-                                :disabled="!$lnbitsUrl || !$lnbitsAdminApiKey"
-                                icon="plus">
-                                Neues Geschenk anlegen
-                            </x-button>
-                        </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-4 pt-6">
+                    <div class="grid grid-cols-4 gap-4 pt-6" wire:key="createNew">
                         <div>
                             <x-input
                                 wire:model.debounce="receiver"
@@ -67,15 +62,55 @@
                         </div>
                         <div>
                             <x-input
+                                min="10000"
                                 wire:model.debounce="amount"
-                                type="number" label="Betrag" placeholder="Betrag"/>
+                                type="number" label="Sats" placeholder="Sats"/>
                         </div>
                         <div>
                             <x-datetime-picker
                                 without-time
                                 wire:model.debounce="until" label="Ablaufdatum" placeholder="Ablaufdatum"/>
                         </div>
+                        <div>
+                            <x-button
+                                wire:click="createWithdrawLink"
+                                :disabled="!$lnbitsUrl || !$lnbitsAdminApiKey"
+                                icon="plus">
+                                Neues Geschenk anlegen
+                            </x-button>
+                        </div>
                     </div>
+                    @foreach($withdrawLinks as $withdrawLink)
+                        <div>
+                            <div class="grid grid-cols-4 gap-4 pt-6" wire:key="withdrawlink_{{ $withdrawLink->id }}">
+                                <div>
+                                    <x-input
+                                        :value="$withdrawLink->title"
+                                        label="Name des Empfängers" placeholder="Name des Empfängers"/>
+                                </div>
+                                <div>
+                                    <x-input
+                                        :value="$withdrawLink->min_withdrawable"
+                                        type="number" label="Sats" placeholder="Sats"/>
+                                </div>
+                                <div>
+                                    <x-datetime-picker
+                                        :value="$withdrawLink->valid_until"
+                                        wire:model.debounce="until" label="Ablaufdatum" placeholder="Ablaufdatum"/>
+                                </div>
+                                <div>
+                                    <x-button
+                                        wire:click="delete({{ $withdrawLink->id }})"
+                                        icon="minus">
+                                        Löschen
+                                    </x-button>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
