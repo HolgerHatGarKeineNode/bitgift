@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->string('lnbits_url')->nullable();
+            $table->string('lnbits_admin_api_key')->nullable();
         });
     }
 
