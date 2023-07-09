@@ -9,7 +9,7 @@ interface WalletAPIInterface
 
     public function getWithdrawLinks(): array;
 
-    public function getWithdrawLink(): array;
+    public function getWithdrawLink(int $id): array;
 
     public function createWithdrawLink(
         string $title,

@@ -31,9 +31,20 @@ class LNBitsApiAdapter implements \App\Bitcoin\WalletAPIInterface
         return [];
     }
 
-    public function getWithdrawLink(): array
+    public function getWithdrawLink(int $id): array
     {
-        // TODO: Implement getWithdrawLink() method.
+        $lnbitsId = LNbitsWithdrawLink::query()
+                                      ->where('id', $id)
+                                      ->value('lnbits_id');
+
+        $response = Http::lnbits()
+                        ->get("withdraw/api/v1/links/{$lnbitsId}");
+
+        if ($response->successful()) {
+            return $response->json();
+        }
+
+        return [];
     }
 
     public function createWithdrawLink(
