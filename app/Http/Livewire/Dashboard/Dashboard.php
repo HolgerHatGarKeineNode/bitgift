@@ -67,9 +67,9 @@ class Dashboard extends Component
             min_withdrawable: $this->amount,
             max_withdrawable: $this->amount,
             uses: 1,
-            wait_time: 3600,
-            is_unique: true,
-            webhook_url: '',
+            wait_time: 1,
+            is_unique: false,
+            webhook_url: url()->route('webhook'),
             valid_until: $this->until
         );
         $this->amount = 10000;

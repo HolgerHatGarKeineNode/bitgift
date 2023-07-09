@@ -20,6 +20,7 @@ class LNbitsWithdrawLink extends Model
         'min_withdrawable',
         'max_withdrawable',
         'uses',
+        'used',
         'wait_time',
         'is_unique',
         'unique_hash',

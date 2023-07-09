@@ -24,7 +24,7 @@ class LNBitsApiAdapter implements \App\Bitcoin\WalletAPIInterface
         $response = Http::lnbits()
                         ->get('withdraw/api/v1/links');
 
-        if ($response->ok()) {
+        if ($response->successful()) {
             return $response->json();
         }
 
@@ -54,7 +54,6 @@ class LNBitsApiAdapter implements \App\Bitcoin\WalletAPIInterface
                             'uses'             => $uses,
                             'wait_time'        => $wait_time,
                             'is_unique'        => $is_unique,
-                            'webhook_url'      => $webhook_url,
                         ]);
 
         if ($response->successful()) {

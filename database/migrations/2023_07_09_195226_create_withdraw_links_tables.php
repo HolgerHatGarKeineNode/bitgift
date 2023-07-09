@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('min_withdrawable');
             $table->unsignedBigInteger('max_withdrawable');
             $table->unsignedInteger('uses');
+            $table->unsignedInteger('used');
             $table->unsignedInteger('wait_time');
             $table->boolean('is_unique');
             $table->string('unique_hash');

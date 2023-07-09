@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Bitcoin\LNbits\LNBitsApiAdapter;
 use App\Bitcoin\WalletAPIInterface;
+use App\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        Date::use(
+            Carbon::class
+        );
+
         $this->app->singleton(WalletAPIInterface::class, function ($app) {
             return new LNBitsApiAdapter;
         });
