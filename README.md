@@ -1,7 +1,7 @@
 ## Requirements
 
 - `PHP >8.1`
-- `Node.js >16.0`'
+- `Node.js >16.0`
 - `yarn`
 - ` crontab`
   - `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
