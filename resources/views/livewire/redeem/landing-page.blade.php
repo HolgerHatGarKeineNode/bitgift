@@ -122,7 +122,7 @@
                                 <img
                                     class="h-12"
                                     src="{{ asset('img/redeem_btn.png') }}" alt="phoenix">
-                                Nachdem du auf Redeem/Einlösen geklickt hast, wird dir der Betrag in deine Wallet
+                                Nachdem du auf Redeem/Einlösen geklickt hast, wird der Betrag in deine Wallet
                                 transferiert.
                             </x-slot>
                         </x-steps.current>
@@ -144,7 +144,7 @@
                 </ol>
             </nav>
             <p>
-                Öffne diesen Link dazu am Besten auf deinem Rechner, damit du den QR-Code mit deinem Handy auf dem
+                Öffne diesen Link dazu am Besten auf deinem Rechner, damit du den QR-Code mit deinem Handy vom
                 Monitor abscannen kannst.
             </p>
             <p class="text-orange-500 font-semibold">
