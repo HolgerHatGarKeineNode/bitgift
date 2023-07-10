@@ -21,12 +21,12 @@ class Dashboard extends Component
     public function rules()
     {
         return [
-            'lnbitsUrl'         => 'required|url',
+            'lnbitsUrl' => 'required|url',
             'lnbitsAdminApiKey' => 'required',
 
             'receiver' => 'required|string',
-            'amount'   => 'required|integer|min:3000',
-            'until'    => 'required|date',
+            'amount' => 'required|integer|min:3000',
+            'until' => 'required|date',
         ];
     }
 
@@ -44,15 +44,16 @@ class Dashboard extends Component
         collect(
             $walletAPI->getWithdrawLinks())->each(
             fn($withdrawLink) => LNbitsWithdrawLink::query()
-                                                   ->updateOrCreate(
-                                                       [
-                                                           'lnbits_id' => $withdrawLink['id'],
-                                                       ],
-                                                       $withdrawLink
-                                                   )
+                ->updateOrCreate(
+                    [
+                        'lnbits_id' => $withdrawLink['id'],
+                    ],
+                    $withdrawLink
+                )
         );
         $this->withdrawLinks = LNbitsWithdrawLink::query()
-                                                 ->get();
+            ->orderByDesc('created_at')
+            ->get();
     }
 
     public function updated($propertyName)
@@ -80,16 +81,16 @@ class Dashboard extends Component
             ->addMonth()
             ->format('Y-m-d');
         $this->withdrawLinks = LNbitsWithdrawLink::query()
-                                                 ->get();
+            ->get();
         $this->balance = $walletAPI->checkConnection();
         $this->connected = $this->balance !== false;
     }
 
     public function delete($id, WalletAPIInterface $walletAPI)
     {
-        $walletAPI->deleteWithdrawLink((int) $id);
+        $walletAPI->deleteWithdrawLink((int)$id);
         $this->withdrawLinks = LNbitsWithdrawLink::query()
-                                                 ->get();
+            ->get();
         $this->balance = $walletAPI->checkConnection();
         $this->connected = $this->balance !== false;
     }
