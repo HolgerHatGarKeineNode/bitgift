@@ -122,35 +122,27 @@
                                     @if($withdrawLink->uses === $withdrawLink->used)
                                         <x-badge green label="wurde eingelöst"/>
                                     @else
-                                        <x-button
-                                            wire:click="delete({{ $withdrawLink->id }})"
-                                            icon="minus">
-                                            Löschen
-                                        </x-button>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 mt-6">
-                                <div>
-                                    <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4">
-                                        <div class="flex">
-                                            <div class="ml-3">
-                                                <p class="text-sm text-yellow-700">
-                                                    Teile diesen Link mit dem Empfänger:
-                                                    <a
-                                                        target="_blank"
-                                                        href="{{ \Illuminate\Support\Facades\URL::signedRoute('redeem', ['withdrawLink' => $withdrawLink]) }}"
-                                                       class="font-medium text-yellow-700 underline hover:text-yellow-600">
-                                                        LINK ZUM EINLÖSEN DES GESCHENKS
-                                                    </a>
-                                                </p>
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <x-button
+                                                    xs
+                                                    red
+                                                    wire:click="delete({{ $withdrawLink->id }})"
+                                                    icon="minus">
+                                                    Löschen
+                                                </x-button>
+                                            </div>
+                                            <div>
+                                                <x-button
+                                                    target="_blank"
+                                                    :href="\Illuminate\Support\Facades\URL::signedRoute('redeem', ['withdrawLink' => $withdrawLink])"
+                                                    icon="globe">
+                                                    Link
+                                                </x-button>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
-                                {{--<div>
-                                    <x-input.simple-mde wire:model.defer="libraryItem.value"/>
-                                </div>--}}
                             </div>
                         </div>
                     @endforeach
