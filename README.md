@@ -44,6 +44,8 @@
 
 ```cp .env.example .env```
 
+Configure `.env` file!
+
 ```
 docker run --rm \
     -u "$(id -u):$(id -g)" \
