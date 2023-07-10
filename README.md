@@ -22,6 +22,16 @@
 
 ### 4. Configure .env file
 
+```dotenv
+MIN_WITHDRAW=10000
+
+ADMIN_NAME=CHANGEME
+ADMIN_EMAIL=change@changeme.de
+ADMIN_PASSWORD="changeme"
+ADMIN_LNBITS_URL=https://changeme.de
+ADMIN_LNBITS_API_KEY=changeme
+```
+
 ### 5. Execute installation script
 
 `php artisan install`
@@ -47,6 +57,16 @@
 ```cp .env.example .env```
 
 Configure `.env` file!
+
+```dotenv
+MIN_WITHDRAW=10000
+
+ADMIN_NAME=CHANGEME
+ADMIN_EMAIL=change@changeme.de
+ADMIN_PASSWORD="changeme"
+ADMIN_LNBITS_URL=https://changeme.de
+ADMIN_LNBITS_API_KEY=changeme
+```
 
 ```
 docker run --rm \
