@@ -48,6 +48,7 @@ ADMIN_LNBITS_API_KEY=changeme
 - [ ] Refactor installation process
 - [ ] Refactor configuration process
 - [ ] Provide documentation for self-hosting
+- [ ] adapter for BTCpayserver
 - [ ] Add tests
 
 ## Development
