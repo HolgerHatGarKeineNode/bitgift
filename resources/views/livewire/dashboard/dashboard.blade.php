@@ -71,6 +71,7 @@
                         </div>
                         <div>
                             <x-datetime-picker
+                                :clearable="false"
                                 without-time
                                 wire:model.debounce="until" label="Ablaufdatum" placeholder="Ablaufdatum"/>
                         </div>
@@ -100,16 +101,20 @@
                             <div class="grid grid-cols-4 gap-4 pt-6" wire:key="withdrawlink_{{ $withdrawLink->id }}">
                                 <div>
                                     <x-input
+                                        readonly
                                         :value="$withdrawLink->title"
                                         label="Name des Empfängers" placeholder="Name des Empfängers"/>
                                 </div>
                                 <div>
                                     <x-input
+                                        readonly
                                         :value="$withdrawLink->min_withdrawable"
                                         type="number" label="Sats" placeholder="Sats"/>
                                 </div>
                                 <div>
                                     <x-datetime-picker
+                                        readonly
+                                        :clearable="false"
                                         :value="$withdrawLink->valid_until"
                                         wire:model.debounce="until" label="Ablaufdatum" placeholder="Ablaufdatum"/>
                                 </div>
