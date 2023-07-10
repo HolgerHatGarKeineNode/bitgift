@@ -58,6 +58,10 @@
             <p>
                 Am {{ $withdrawLink->valid_until->asDate() }} gehen die Satoshis zurück in meine Wallet.
             </p>
+            <p class="text-orange-500">
+                Benutze die Phoenix Wallet bitte nur für <span class="font-semibold underline">kleine Beträge</span>. Für größere Beträge nimmt man bei Bitcoin eine Hardware-Wallet.
+                Aber dazu kannst mich gerne anschreiben.
+            </p>
 
             <nav aria-label="Progress">
                 <ol role="list" class="overflow-hidden">
