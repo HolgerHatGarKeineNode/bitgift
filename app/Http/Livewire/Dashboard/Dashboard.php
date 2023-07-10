@@ -12,7 +12,7 @@ class Dashboard extends Component
     public $lnbitsUrl = '';
     public $lnbitsAdminApiKey = '';
     public $receiver = '';
-    public $amount = 10000;
+    public $amount = 3000;
     public $until;
     public $connected = false;
     public Collection $withdrawLinks;
@@ -24,7 +24,7 @@ class Dashboard extends Component
             'lnbitsAdminApiKey' => 'required',
 
             'receiver' => 'required|string',
-            'amount'   => 'required|integer|min:10000',
+            'amount'   => 'required|integer|min:3000',
             'until'    => 'required|date',
         ];
     }

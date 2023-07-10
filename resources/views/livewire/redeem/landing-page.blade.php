@@ -48,9 +48,26 @@
                 </x-button>
             </div>
             <p>
-                Mit der sicheren Phoenix Wallet kannst du dieses Bitcoin-Geschenk einlösen.
+                Mit der sicheren <span class="font-bold text-green-500">Phoenix Wallet</span> kannst du dieses
+                Bitcoin-Geschenk einlösen.
                 Du hast allerdings nur 1 Monat Zeit dafür.
             </p>
+            <div class="flex space-x-4">
+                <a href="https://play.google.com/store/apps/details?id=fr.acinq.phoenix.mainnet" target="_blank"><img
+                        class="h-12"
+                        src="{{ asset('img/googleplay.png') }}" alt="googleplay"></a>
+                <a href="https://apps.apple.com/us/app/phoenix-wallet/id1544097028" target="_blank"><img class="h-12"
+                                                                                                         src="{{ asset('img/appstore.svg') }}"
+                                                                                                         alt="googleplay"></a>
+            </div>
+            <p class="font-semibold">
+                Öffne die <span class="font-bold text-green-500">Phoenix Wallet</span> und scanne den QR-Code indem du
+                auf SENDEN gehst.
+                Dann erlaube der App den Zugriff auf die Kamera und scanne den QR-Code ein.
+            </p>
+            <div>
+                <img class="h-24" src="{{ asset('img/redeem.png') }}" alt="redeem">
+            </div>
             <p>
                 Öffne diesen Link dazu am Besten auf deinem Rechner, damit du den QR-Code mit deinem Handy auf dem
                 Monitor abscannen kannst.
@@ -58,10 +75,10 @@
             <p>
                 Am {{ $withdrawLink->valid_until->asDate() }} gehen die Satoshis zurück in meine Wallet.
             </p>
-            <p>
+            <p class="text-orange-500 font-semibold">
                 Warum Bitcoin?
             </p>
-            <ul class="list-decimal leading-10 pl-8">
+            <ul class="list-decimal leading-10 pl-8 text-orange-500 italic">
                 <li>
                     Unabhängige Währung, keine Zentralbank.
                 </li>
@@ -94,7 +111,7 @@
                     <img id="redeem" src="{{ 'data:image/png;base64, '. $this->qrCode }}" alt="qrcode">
                 </a>
             </div>
-            <div wire:poll.keep-alive.1000ms="pollLink"></div>
+            <div wire:poll.keep-alive.2000ms="pollLink"></div>
         </div>
     @endif
 </div>

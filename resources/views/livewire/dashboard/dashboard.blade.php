@@ -62,7 +62,7 @@
                         </div>
                         <div>
                             <x-input
-                                min="10000"
+                                min="3000"
                                 wire:model.debounce="amount"
                                 type="number" label="Sats" placeholder="Sats"/>
                         </div>
