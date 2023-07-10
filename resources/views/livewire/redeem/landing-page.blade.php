@@ -107,7 +107,7 @@
                 Aufsicht. Bitcoin kennt keine Grenzen und dein Recht auf Privatsphäre bleibt gewahrt.
             </p>
             <div class="pb-16">
-                <a href="{{ $withdrawLink->lnurl }}">
+                <a href="lightning:{{ $withdrawLink->lnurl }}">
                     <img id="redeem" src="{{ 'data:image/png;base64, '. $this->qrCode }}" alt="qrcode">
                 </a>
             </div>
