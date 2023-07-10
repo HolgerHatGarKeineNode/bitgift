@@ -32,6 +32,7 @@ class Dashboard extends Component
 
     public function mount(WalletAPIInterface $walletAPI)
     {
+        $this->amount = config('bitcoin.min_withdraw');
         $currentUser = auth()->user();
         $this->until = now()
             ->addMonth()
