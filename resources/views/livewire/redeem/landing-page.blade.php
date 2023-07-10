@@ -89,7 +89,7 @@
                         <x-steps.current title="Geld abheben">
                             <x-slot name="description">
                                 <div class="flex flex-col space-y-4">
-                                    <h2 class="font-bold">1. Variante Wallet direkt öffnen</h2>
+                                    <h2 class="font-bold">1. Variante Wallet direkt öffnen (im Handy)</h2>
                                     <div>
                                         <x-button
                                             lg
