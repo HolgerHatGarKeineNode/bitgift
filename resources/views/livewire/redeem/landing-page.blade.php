@@ -27,6 +27,9 @@
         </div>
     @else
         <div class="space-y-6">
+            <div class="bg-white">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Ein Geschenk von {{ \App\Models\User::first()->name }}</h2>
+            </div>
             <p>
                 Hallo {{ $withdrawLink->title }},
             </p>
@@ -52,6 +55,9 @@
                 Bitcoin-Geschenk einlösen.
                 Du hast allerdings nur 1 Monat Zeit dafür.
             </p>
+            <p>
+                Am {{ $withdrawLink->valid_until->asDate() }} gehen die Satoshis zurück in meine Wallet.
+            </p>
 
             <nav aria-label="Progress">
                 <ol role="list" class="overflow-hidden">
@@ -73,23 +79,24 @@
                             </x-slot>
                         </x-steps.current>
                     </li>
-                    <li class="relative pb-10">
-                        <div class="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-green-600"
-                             aria-hidden="true"></div>
-                        <x-steps.current title="Phoenix Wallet starten">
-                            <x-slot name="description">
-                                <img
-                                    class="h-18"
-                                    src="{{ asset('img/phoenix.png') }}" alt="phoenix">
-                            </x-slot>
-                        </x-steps.current>
-                    </li>
                     <li id="redeem" class="relative pb-10">
                         <div class="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-green-600"
                              aria-hidden="true"></div>
-                        <x-steps.current title="QR-Code einscannen">
+                        <x-steps.current title="Geld abheben">
                             <x-slot name="description">
                                 <div class="flex flex-col space-y-4">
+                                    <h2 class="font-bold">1. Variante Wallet direkt öffnen</h2>
+                                    <div>
+                                        <x-button
+                                            lg
+                                            green
+                                            :href="'lightning:'.$withdrawLink->lnurl"
+                                        >
+                                            Wallet öffnen
+                                        </x-button>
+                                    </div>
+                                    <h2 class="font-bold">2. Variante QR-Code scannen</h2>
+                                    Öffne die Phoenix Wallet und scanne den QR-Code.
                                     <div>
                                         <img class="h-24" src="{{ asset('img/redeem.png') }}" alt="redeem">
                                     </div>
@@ -125,7 +132,8 @@
                                 <img
                                     class="h-18"
                                     src="{{ asset('img/recovery.png') }}" alt="recovery">
-                                Eine Seed Phrase ist eine Liste von Wörtern, die die Schlüsselinformation zum Wiederherstellen eines Bitcoin-Wallets speichert.
+                                Eine Seed Phrase ist eine Liste von Wörtern, die die Schlüsselinformation zum
+                                Wiederherstellen eines Bitcoin-Wallets speichert.
                             </x-slot>
                         </x-steps.current>
                     </li>
@@ -134,9 +142,6 @@
             <p>
                 Öffne diesen Link dazu am Besten auf deinem Rechner, damit du den QR-Code mit deinem Handy auf dem
                 Monitor abscannen kannst.
-            </p>
-            <p>
-                Am {{ $withdrawLink->valid_until->asDate() }} gehen die Satoshis zurück in meine Wallet.
             </p>
             <p class="text-orange-500 font-semibold">
                 Warum Bitcoin?
