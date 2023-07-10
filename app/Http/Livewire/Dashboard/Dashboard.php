@@ -82,6 +82,7 @@ class Dashboard extends Component
             ->addMonth()
             ->format('Y-m-d');
         $this->withdrawLinks = LNbitsWithdrawLink::query()
+            ->orderByDesc('created_at')
             ->get();
         $this->balance = $walletAPI->checkConnection();
         $this->connected = $this->balance !== false;
@@ -91,6 +92,7 @@ class Dashboard extends Component
     {
         $walletAPI->deleteWithdrawLink((int)$id);
         $this->withdrawLinks = LNbitsWithdrawLink::query()
+            ->orderByDesc('created_at')
             ->get();
         $this->balance = $walletAPI->checkConnection();
         $this->connected = $this->balance !== false;
