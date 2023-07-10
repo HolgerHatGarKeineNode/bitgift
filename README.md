@@ -1,3 +1,43 @@
+## Requirements
+
+- ` >PHP 8.1`
+- ` crontab`
+  - `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
+
+## Installation
+
+### 1. Clone the repository
+
+`git clone https://github.com/HolgerHatGarKeineNode/bitgift`
+
+### 2. Install dependencies
+
+`composer install`
+
+### 3. Create .env file
+
+`cp .env.example .env`
+
+### 4. Configure .env file
+
+### 5. Execute installation script
+
+`php artisan install`
+
+### 6. Login to the admin panel
+
+`/login`
+
+## Todo
+
+- [x] Create withdraw links
+- [x] Delete withdraw links
+- [ ] cronjob for deleting expired links
+- [ ] Refactor installation process
+- [ ] Refactor configuration process
+- [ ] Provide documentation for self-hosting
+- [ ] Add tests
+
 ## Development
 
 ### Installation
