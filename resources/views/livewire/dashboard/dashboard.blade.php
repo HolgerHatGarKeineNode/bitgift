@@ -9,21 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <x-input
-                                wire:model.debounce="lnbitsUrl"
-                                type="url" label="LNbits URL" placeholder="LNbits URL"/>
-                        </div>
-                        <div>
-                            <x-input
-                                wire:model.debounce="lnbitsAdminApiKey"
-                                type="password" label="LNbits Admin API Key" placeholder="LNbits Admin API Key"
-                                hint="Bitte benutze diese Software self-hosted."
-                                corner-hint="Vorsicht!"
-                            />
-                        </div>
-                    </div>
                     @if($connected)
                         <div class="rounded-md bg-green-50 p-4">
                             <div class="flex">
