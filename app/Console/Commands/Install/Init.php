@@ -25,9 +25,16 @@ class Init extends Command
      */
     public function handle()
     {
+        $yarnInstall = Process::run('yarn install', function (string $type, string $output) {
+            echo $output;
+        });
+        $yarnBuild = Process::run('yarn build', function (string $type, string $output) {
+            echo $output;
+        });
+
         // call touch database/database.sqlite
-        $result = Process::run('touch database/database.sqlite');
-        if ($result->successful()) {
+        $touchDb = Process::run('touch database/database.sqlite');
+        if ($touchDb->successful()) {
             $this->info('Created database/database.sqlite');
         } else {
             $this->error('Failed to create database/database.sqlite');
