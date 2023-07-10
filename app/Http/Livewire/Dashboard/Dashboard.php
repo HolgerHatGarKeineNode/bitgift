@@ -13,7 +13,7 @@ class Dashboard extends Component
     public $lnbitsAdminApiKey = '';
     public $receiver = '';
     public $balance = 0;
-    public $amount = 3000;
+    public $amount = 10000;
     public $until;
     public $connected = false;
     public Collection $withdrawLinks;
@@ -21,12 +21,12 @@ class Dashboard extends Component
     public function rules()
     {
         return [
-            'lnbitsUrl' => 'required|url',
-            'lnbitsAdminApiKey' => 'required',
+            'lnbitsUrl' => ['required', 'url'],
+            'lnbitsAdminApiKey' => ['required'],
 
-            'receiver' => 'required|string',
-            'amount' => 'required|integer|min:3000',
-            'until' => 'required|date',
+            'receiver' => ['required', 'string'],
+            'amount' => ['required', 'integer', 'min:'. config('bitcoin.min_withdraw')],
+            'until' => ['required', 'date'],
         ];
     }
 
@@ -75,7 +75,7 @@ class Dashboard extends Component
             webhook_url: url()->route('webhook'),
             valid_until: $this->until
         );
-        $this->amount = 10000;
+        $this->amount = config('bitcoin.min_withdraw');
         $this->receiver = '';
         $this->until = now()
             ->addMonth()

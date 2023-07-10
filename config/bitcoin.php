@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'min_withdraw' => env('MIN_WITHDRAW', 10000),
+
     'lnbits'       => [
         'url'           => env('ADMIN_LNBITS_URL'),
         'admin_api_key' => env('ADMIN_LNBITS_API_KEY'),

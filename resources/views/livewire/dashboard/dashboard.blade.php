@@ -65,7 +65,7 @@
                         </div>
                         <div>
                             <x-input
-                                min="3000"
+                                :min="config('bitcoin.min_withdraw')"
                                 wire:model.debounce="amount"
                                 type="number" label="Sats" placeholder="Sats"/>
                         </div>
