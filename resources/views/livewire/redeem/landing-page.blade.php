@@ -131,14 +131,6 @@
                     </li>
                 </ol>
             </nav>
-            <p class="font-semibold">
-                Öffne die <span class="font-bold text-green-500">Phoenix Wallet</span> und scanne den QR-Code indem du
-                auf SENDEN gehst.
-                Dann erlaube der App den Zugriff auf die Kamera und scanne den QR-Code ein.
-            </p>
-            <div>
-                <img class="h-24" src="{{ asset('img/redeem.png') }}" alt="redeem">
-            </div>
             <p>
                 Öffne diesen Link dazu am Besten auf deinem Rechner, damit du den QR-Code mit deinem Handy auf dem
                 Monitor abscannen kannst.
