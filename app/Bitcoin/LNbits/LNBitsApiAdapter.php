@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Http;
 
 class LNBitsApiAdapter implements \App\Bitcoin\WalletAPIInterface
 {
-    public function checkConnection(): bool
+    public function checkConnection(): bool|int
     {
         $response = Http::lnbits()
                         ->get('api/v1/wallet');
 
         if ($response->json('id')) {
-            return true;
+            return $response->json('balance');
         }
 
         return false;

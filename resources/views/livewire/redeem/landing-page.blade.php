@@ -52,14 +52,85 @@
                 Bitcoin-Geschenk einlösen.
                 Du hast allerdings nur 1 Monat Zeit dafür.
             </p>
-            <div class="flex space-x-4">
-                <a href="https://play.google.com/store/apps/details?id=fr.acinq.phoenix.mainnet" target="_blank"><img
-                        class="h-12"
-                        src="{{ asset('img/googleplay.png') }}" alt="googleplay"></a>
-                <a href="https://apps.apple.com/us/app/phoenix-wallet/id1544097028" target="_blank"><img class="h-12"
-                                                                                                         src="{{ asset('img/appstore.svg') }}"
-                                                                                                         alt="googleplay"></a>
-            </div>
+
+            <nav aria-label="Progress">
+                <ol role="list" class="overflow-hidden">
+                    <li class="relative pb-10">
+                        <div class="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-green-600"
+                             aria-hidden="true"></div>
+                        <x-steps.current title="Phoenix Wallet runterladen">
+                            <x-slot name="description">
+                                <div class="flex space-x-4">
+                                    <a href="https://play.google.com/store/apps/details?id=fr.acinq.phoenix.mainnet"
+                                       target="_blank"><img
+                                            class="h-10"
+                                            src="{{ asset('img/googleplay.png') }}" alt="googleplay"></a>
+                                    <a href="https://apps.apple.com/us/app/phoenix-wallet/id1544097028" target="_blank"><img
+                                            class="h-10"
+                                            src="{{ asset('img/appstore.svg') }}"
+                                            alt="googleplay"></a>
+                                </div>
+                            </x-slot>
+                        </x-steps.current>
+                    </li>
+                    <li class="relative pb-10">
+                        <div class="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-green-600"
+                             aria-hidden="true"></div>
+                        <x-steps.current title="Phoenix Wallet starten">
+                            <x-slot name="description">
+                                <img
+                                    class="h-18"
+                                    src="{{ asset('img/phoenix.png') }}" alt="phoenix">
+                            </x-slot>
+                        </x-steps.current>
+                    </li>
+                    <li id="redeem" class="relative pb-10">
+                        <div class="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-green-600"
+                             aria-hidden="true"></div>
+                        <x-steps.current title="QR-Code einscannen">
+                            <x-slot name="description">
+                                <div class="flex flex-col space-y-4">
+                                    <div>
+                                        <img class="h-24" src="{{ asset('img/redeem.png') }}" alt="redeem">
+                                    </div>
+                                    <div>
+                                        <a href="lightning:{{ $withdrawLink->lnurl }}">
+                                            <img id="redeem" src="{{ 'data:image/png;base64, '. $this->qrCode }}"
+                                                 alt="qrcode">
+                                        </a>
+                                    </div>
+                                </div>
+                            </x-slot>
+                        </x-steps.current>
+                    </li>
+                    <li class="relative pb-10">
+                        <div class="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-green-600"
+                             aria-hidden="true"></div>
+                        <x-steps.current title="Redeem/Einlösen bestätigen">
+                            <x-slot name="description">
+                                <img
+                                    class="h-12"
+                                    src="{{ asset('img/redeem_btn.png') }}" alt="phoenix">
+                                Nachdem du auf Redeem/Einlösen geklickt hast, wird dir der Betrag in deine Wallet
+                                transferiert.
+                            </x-slot>
+                        </x-steps.current>
+                    </li>
+                    <li class="relative">
+                        <x-steps.current title="Dein Backup Seed Phrase aufschreiben">
+                            <x-slot name="description">
+                                <img
+                                    class="h-18"
+                                    src="{{ asset('img/settings.png') }}" alt="settings">
+                                <img
+                                    class="h-18"
+                                    src="{{ asset('img/recovery.png') }}" alt="recovery">
+                                Eine Seed Phrase ist eine Liste von Wörtern, die die Schlüsselinformation zum Wiederherstellen eines Bitcoin-Wallets speichert.
+                            </x-slot>
+                        </x-steps.current>
+                    </li>
+                </ol>
+            </nav>
             <p class="font-semibold">
                 Öffne die <span class="font-bold text-green-500">Phoenix Wallet</span> und scanne den QR-Code indem du
                 auf SENDEN gehst.
@@ -78,6 +149,7 @@
             <p class="text-orange-500 font-semibold">
                 Warum Bitcoin?
             </p>
+            <x-embed url="https://www.youtube.com/watch?v=zdVwgg036KE"/>
             <ul class="list-decimal leading-10 pl-8 text-orange-500 italic">
                 <li>
                     Unabhängige Währung, keine Zentralbank.
@@ -106,11 +178,6 @@
                 staatlicher
                 Aufsicht. Bitcoin kennt keine Grenzen und dein Recht auf Privatsphäre bleibt gewahrt.
             </p>
-            <div class="pb-16">
-                <a href="lightning:{{ $withdrawLink->lnurl }}">
-                    <img id="redeem" src="{{ 'data:image/png;base64, '. $this->qrCode }}" alt="qrcode">
-                </a>
-            </div>
             <div wire:poll.keep-alive.2000ms="pollLink"></div>
         </div>
     @endif

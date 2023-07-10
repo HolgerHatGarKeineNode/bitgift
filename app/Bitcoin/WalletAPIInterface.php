@@ -5,7 +5,7 @@ namespace App\Bitcoin;
 interface WalletAPIInterface
 {
 
-    public function checkConnection(): bool;
+    public function checkConnection(): bool|int;
 
     public function getWithdrawLinks(): array;
 

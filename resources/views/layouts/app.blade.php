@@ -18,6 +18,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+        <x-embed-styles />
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

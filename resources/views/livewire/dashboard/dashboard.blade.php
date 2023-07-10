@@ -28,8 +28,9 @@
                         <div class="rounded-md bg-green-50 p-4">
                             <div class="flex">
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-green-800">Verbunden
-                                        mit {{ config('bitcoin.lnbits.url') }}</p>
+                                    <p class="text-sm font-medium text-green-800">
+                                        Verbunden mit {{ config('bitcoin.lnbits.url') }}. Aufgeladen mit {{ number_format($balance / 1000, 0, ',', '.') }} Sats.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +38,10 @@
                         <div class="rounded-md bg-red-50 p-4">
                             <div class="flex">
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-red-800">Keine Verbindung
-                                        zu {{ config('bitcoin.lnbits.url') }}</p>
+                                    <p class="text-sm font-medium text-red-800">
+                                        Keine Verbindung
+                                        zu {{ config('bitcoin.lnbits.url') }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -72,12 +75,24 @@
                                 wire:model.debounce="until" label="Ablaufdatum" placeholder="Ablaufdatum"/>
                         </div>
                         <div>
-                            <x-button
-                                wire:click="createWithdrawLink"
-                                :disabled="!$lnbitsUrl || !$lnbitsAdminApiKey"
-                                icon="plus">
-                                Neues Geschenk anlegen
-                            </x-button>
+                            @if($balance < 10000000)
+                                <div class="rounded-md bg-red-50 p-4">
+                                    <div class="flex">
+                                        <div class="ml-3">
+                                            <p class="text-sm font-medium text-red-800">
+                                                Lade deine LNbits Wallet mit mindestens 10.000 Sats auf, um Geschenke zu erstellen.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <x-button
+                                    wire:click="createWithdrawLink"
+                                    :disabled="!$lnbitsUrl || !$lnbitsAdminApiKey"
+                                    icon="plus">
+                                    Neues Geschenk anlegen
+                                </x-button>
+                            @endif
                         </div>
                     </div>
                     @foreach($withdrawLinks as $withdrawLink)

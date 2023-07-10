@@ -12,6 +12,7 @@ class Dashboard extends Component
     public $lnbitsUrl = '';
     public $lnbitsAdminApiKey = '';
     public $receiver = '';
+    public $balance = 0;
     public $amount = 3000;
     public $until;
     public $connected = false;
@@ -38,7 +39,8 @@ class Dashboard extends Component
         $this->lnbitsUrl = $currentUser->lnbits_url;
         $this->lnbitsAdminApiKey = $currentUser->lnbits_admin_api_key;
 
-        $this->connected = $walletAPI->checkConnection();
+        $this->balance = $walletAPI->checkConnection();
+        $this->connected = $this->balance !== false;
         collect(
             $walletAPI->getWithdrawLinks())->each(
             fn($withdrawLink) => LNbitsWithdrawLink::query()
@@ -79,6 +81,8 @@ class Dashboard extends Component
             ->format('Y-m-d');
         $this->withdrawLinks = LNbitsWithdrawLink::query()
                                                  ->get();
+        $this->balance = $walletAPI->checkConnection();
+        $this->connected = $this->balance !== false;
     }
 
     public function delete($id, WalletAPIInterface $walletAPI)
@@ -86,6 +90,8 @@ class Dashboard extends Component
         $walletAPI->deleteWithdrawLink((int) $id);
         $this->withdrawLinks = LNbitsWithdrawLink::query()
                                                  ->get();
+        $this->balance = $walletAPI->checkConnection();
+        $this->connected = $this->balance !== false;
     }
 
     public function render()
